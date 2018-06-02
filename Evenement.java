@@ -2,7 +2,7 @@ package modele;
 
 import java.io.Serializable;
 
-public class Evenement implements Serializable{
+public class Evenement implements Comparable <Evenement>, Serializable{
 	private Date chDate;
 	private String chTitre, chTexte;
 	private int chPoids;
@@ -18,7 +18,7 @@ public class Evenement implements Serializable{
 	}//Evenement()
 	
 	public String toString() {
-		return "Le " + chDate.toString() + ", a pour titre " + chTitre + "  et a comme texte " + chTexte;
+		return "Le " + chDate.toString() + ", a pour titre " + chTitre + "  et a comme texte " + chTexte + "et a comme poids" + chPoids;
 	}//toString()
 	
 	
