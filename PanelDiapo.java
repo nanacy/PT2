@@ -22,7 +22,7 @@ public class PanelDiapo extends JPanel implements ActionListener{
 	int chDateDebut;
 	int chDateFin;
 	int chPeriode;
-	//Chronologie chrono;
+	Chronologie chrono;
 	
 	//CHAMPS FORMULAIRE CREATION FRISE ----------------------------------------------------
 	GridBagLayout formulaire_crea = new GridBagLayout();
@@ -47,7 +47,10 @@ public class PanelDiapo extends JPanel implements ActionListener{
 
 	
 	// CONSTRUCTEUR --------------------------------------------------------------------------
-	public PanelDiapo(){
+	public PanelDiapo(Chronologie parChrono){
+		
+		chrono = parChrono;
+		
 		//  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		//  !										!
 		//  !		 FORMULAIRE CREATION FRISE 		!
