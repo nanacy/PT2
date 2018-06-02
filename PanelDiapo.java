@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import modele.*;
 import vue.*;
 
-public class PanelFormulaire extends JPanel implements ActionListener{
+public class PanelDiapo extends JPanel implements ActionListener{
 	// CHAMPS ----------------------------------------------------------------------------
 	String chTitreFrise;
 	int chDateDebut;
@@ -32,7 +32,7 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	JLabel titrefrise = new JLabel("Titre de la frise chronologique");
 	JTextField txtfrise = new JTextField(10);
 		//ligne 3
-	JLabel datedebut = new JLabel("Date de début");
+	JLabel datedebut = new JLabel("Date de dÃ©but");
 	JTextField txtdatedebut = new JTextField(10);
 		//ligne 4
 	JLabel datefin = new JLabel("Date de fin");
@@ -47,7 +47,7 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 
 	
 	// CONSTRUCTEUR --------------------------------------------------------------------------
-	public PanelFormulaire(){
+	public PanelDiapo(){
 		//  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		//  !										!
 		//  !		 FORMULAIRE CREATION FRISE 		!
@@ -116,10 +116,10 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 		contrainte.gridy=7;
 		add(test, contrainte);
 		
-		//Remise à la normale
+		//Remise Ã  la normale
 		contrainte.gridwidth=1;
 		contrainte.gridheight=1;
-	}//PanelFormulaire
+	}//PanelDiapo
 
 	
 	
@@ -147,4 +147,4 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	}
 
 
-}//class PanelFormulaire
+}//class PanelDiapo
