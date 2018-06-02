@@ -1,105 +1,150 @@
 package vue;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
+import java.awt.GridBagConstraints;
+
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-import modele.Chronologie;
+import modele.*;
+import vue.*;
 
-
-public class PanelDiapo extends JPanel implements ActionListener{
-	private int chPosition; // champs permettant de suivre le mouvement des diaporamas
+public class PanelFormulaire extends JPanel implements ActionListener{
+	// CHAMPS ----------------------------------------------------------------------------
+	String chTitreFrise;
+	int chDateDebut;
+	int chDateFin;
+	int chPeriode;
+	//Chronologie chrono;
 	
+	//CHAMPS FORMULAIRE CREATION FRISE ----------------------------------------------------
+	GridBagLayout formulaire_crea = new GridBagLayout();
+		//ligne 0
+	JLabel titre = new JLabel("FORMULAIRE POUR CREATION D'UNE FRISE");
+		//ligne 2
+	JLabel titrefrise = new JLabel("Titre de la frise chronologique");
+	JTextField txtfrise = new JTextField(10);
+		//ligne 3
+	JLabel datedebut = new JLabel("Date de début");
+	JTextField txtdatedebut = new JTextField(10);
+		//ligne 4
+	JLabel datefin = new JLabel("Date de fin");
+	JTextField txtdatefin = new JTextField(10);
+		//ligne 5
+	JLabel intervalle = new JLabel("Intervalle");
+	JTextField txtintervalle = new JTextField(10);
+		//ligne 6
+	JButton buttonAjout = new JButton("+");
 	
-	//Champs pour mettre en place les images ainsi que les intitulés des images
-	private File repertoire = new File("images"); //les images prises sont des dés allant de 1 à 3
-	private String [] NomPrenom = {"AnnePetit","BiduleDupont","JeanJardin"};
-	private String [] infoFiche={"Anne Petit, Commercial, entrée en 2011","Bidule Dupont, Administration, entré en 2010","Jean Jardin, Etude et Developpement, entré en 2006"};
-	private JLabel [] chlabel = new JLabel[infoFiche.length];
+	JTextField test = new JTextField(10);
 
-
-	//Création des différents boutons
-	private String [] chTitreBoutons={"<",">"};
-	private JButton [] chBoutons = new JButton [chTitreBoutons.length];
 	
-	//On gère la page généralement à travers un BorderLayout
-	private BorderLayout cartes = new BorderLayout(5,5);
-	//Mais on gère le diaporama avec un CardLayout
-	private CardLayout gestionCartes = new CardLayout(5,5);
-	
-	//Le panel Centre correspond au CardLayout, donc à l'affichage des images et de l'intitulé des images
-	private JPanel panelCentre = new JPanel();
-	
-
-	public PanelDiapo(Chronologie parChrono){
-		this.setLayout(cartes); //On utilise un BorderLayout pour gérer la fiche Salarie
-
-		//Panel Nord pour mettre en place le titre de la frise
-		JPanel panelNord = new JPanel();
+	// CONSTRUCTEUR --------------------------------------------------------------------------
+	public PanelFormulaire(){
+		//  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//  !										!
+		//  !		 FORMULAIRE CREATION FRISE 		!
+		//  !										!
+		//  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+		setLayout(formulaire_crea);
+		GridBagConstraints contrainte = new GridBagConstraints();
+		contrainte.insets = new Insets(5,5,5,5);
+		contrainte.fill = GridBagConstraints.BOTH;
+			
+		//--------------- LIGNE 0 ---------------
+		contrainte.gridy=0;
+		contrainte.gridwidth=2;
+		contrainte.gridheight=2;
+		contrainte.insets = new Insets(25,25,25,25);
+		add(titre, contrainte);
 		
-		panelNord.setOpaque(true);
-		panelNord.setLayout(gestionCartes);
-		add(panelNord,BorderLayout.NORTH);
-		JLabel label = new JLabel(parChrono.getTitreFrise());
-		panelNord.add(label);
-
+		contrainte.insets = new Insets(5,5,5,5);
+		contrainte.gridwidth=1;
+		contrainte.gridheight=1;
+		//--------------- LIGNE 2 ---------------
+		contrainte.gridy=2;
+		add(titrefrise, contrainte);
+		contrainte.gridx=1; 
+		add(txtfrise, contrainte);
+		//--------------- LIGNE 3 ---------------
+		contrainte.gridy=3;
+		// **** COLONNE 0 ****
+		contrainte.gridx=0; 
+		add(datedebut, contrainte);
+		// **** COLONNE 1 ****
+		contrainte.gridx=1; 
+		contrainte.gridwidth=4;
+		add(txtdatedebut, contrainte);
+		//--------------- LIGNE 4 ---------------
+		contrainte.gridy=4;
+		contrainte.gridwidth=1;
+		// **** COLONNE 0 ****
+		contrainte.gridx=0; 
+		add(datefin, contrainte);
+		// **** COLONNE 1 ****
+		contrainte.gridx=1; 
+		contrainte.gridwidth=4;
+		add(txtdatefin, contrainte);
+		//--------------- LIGNE 5 ---------------
+		contrainte.gridy=5;
+		contrainte.gridwidth=1;
+		// **** COLONNE 0 ****
+		contrainte.gridx=0; 
+		add(intervalle, contrainte);
+		// **** COLONNE 1 ****
+		contrainte.gridx=1; 
+		add(txtintervalle, contrainte);
+		//--------------- LIGNE 6 ---------------
+		contrainte.gridy=6;
+		// **** COLONNE 0 ****
+		contrainte.gridx=1;
+		add(buttonAjout, contrainte);
+		buttonAjout.addActionListener(this);
 		
-		//PanelCentre pour gérer le diaporama
-		panelCentre.setOpaque(true);
-		panelCentre.setLayout(gestionCartes);
-		add(panelCentre,BorderLayout.CENTER);
+		
+		// TESTTTTTT
+		// TESTTTTTT
+		contrainte.gridx=0;
+		contrainte.gridy=7;
+		add(test, contrainte);
+		
+		//Remise à la normale
+		contrainte.gridwidth=1;
+		contrainte.gridheight=1;
+	}//PanelFormulaire
 
-		//On affichage l'image ainsi que son intitulé dans le panelCentre
-		for(int indice=0;indice<infoFiche.length;indice++){
-			chlabel[indice]=new JLabel (infoFiche[indice],new ImageIcon("images"+File.separator+NomPrenom[indice]+".jpg"),JLabel.CENTER);
-			panelCentre.add(chlabel[indice],infoFiche[indice]);
-			panelCentre.add(chlabel[indice],parChrono.getTitreFrise());
-
+	
+	
+/*
+	String chTitreFrise;
+	int chDateDebut;
+	int chDateFin;
+	int chPeriode;
+*/
+	
+	// CONTROLEUR  ----------------------------------------------------------------
+	public void actionPerformed(ActionEvent parEvt) { 
+		if(parEvt.getSource() == buttonAjout){
+			chTitreFrise=txtfrise.getText();
+			chDateDebut=Integer.parseInt(txtdatedebut.getText());
+			chDateFin=Integer.parseInt(txtdatefin.getText());
+			chPeriode=Integer.parseInt(txtintervalle.getText());
+			
+			Date debut = new Date(chDateDebut);
+			Date fin = new Date(chDateFin);
+			//Chronologie chrono = new Chronologie(debut, fin, chPeriode, chTitreFrise);
+			
+			//test.setText(chrono.toString());
 		}
-		gestionCartes.show(panelCentre, infoFiche[chPosition]);
+	}
 
-		
-		//PanelSud == Affichage des boutons, du texte en bas et du bouton recherche
-		JPanel panelSud = new JPanel (); //Création du panel Sud
-		panelSud.setOpaque(true);
-		add (panelSud, BorderLayout.SOUTH);
-		
-		
-		 //Mise en place des deux boutons dans la section sud de la page
-		for(int indice=0;indice<chBoutons.length;indice++){
-			chBoutons[indice]=new JButton(chTitreBoutons[indice]);
-			chBoutons[indice].addActionListener(this);
-			panelSud.add(chBoutons[indice]);
-		}
 
-	}//FicheSalarie()
-	
-	public void actionPerformed(ActionEvent parEvt){ //Méthode permettant de naviguer entre les pages grâce aux boutons
-		if (parEvt.getSource() == chBoutons[1]){ //Si on clique sur le bouton avancer
-			if (chPosition == 2)
-				chPosition = 0;
-			else
-				chPosition++;
-			gestionCartes.next(panelCentre);
-		}
-
-		else if (parEvt.getSource() == chBoutons[0]){ //Si on clique sur le bouton reculer
-			if (chPosition == 0)
-				chPosition = 2;
-			else
-				chPosition--;
-			gestionCartes.show(panelCentre,infoFiche[chPosition]);
-		}
-		
-	}//actionPerfomed()
-}//FicheSalarie	
-
+}//class PanelFormulaire
