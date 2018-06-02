@@ -130,8 +130,17 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 			chDateDebut=Integer.parseInt(txtdatedebut.getText());
 			chDateFin=Integer.parseInt(txtdatefin.getText());
 			chPeriode=Integer.parseInt(txtintervalle.getText());
-			test.setText(chTitreFrise +chDateDebut +chDateFin +chPeriode);
-		}
+			
+			Date debut = new Date(chDateDebut);
+			Date fin = new Date(chDateFin);
+
+			try {
+				chrono = new Chronologie(debut, fin, chPeriode, chTitreFrise);
+			} catch (ExceptChrono e) {
+				e.printStackTrace();
+			}
+			test.setText(chrono.toString());
+		}//if
 	}
 
 
