@@ -127,15 +127,19 @@ public class PanelAjout extends JPanel implements ActionListener,Data{
 
 	@Override
 	public void actionPerformed(ActionEvent parEvt) {
-		if(parEvt.getSource() == bouton){
-			chDateEvt=new Date(Integer.parseInt(txtAnnee.getText()));
+		if(parEvt.getSource() == buttonAjout){
+			//txtJour.getText()
+			//txtMois.getText()
+			int chDateint = Integer.parseInt(txtAnnee.getText());
+			chDateEvt = new Date(chDateint);
 			chTitreEvt=txt_titre.getText();
 			chTexteEvt=txt_texte.getText();
-			int poids = ComboPoids.getSelectedIndex();
-			Evenement event = new Evenement(chDateEvt,chTitreEvt,chTexteEvt, poids);
-			chChrono.ajout(event);
+			chPoid = boxPoid.getSelectedIndex()+1;
+			
+			Evenement evt = new Evenement(chDateEvt, chTitreEvt, chTexteEvt, chPoid);
+			System.out.println(evt.toString());
 		}
-	}//actionPerfomed()
+	}//actionperformed
 	
 	
 	
