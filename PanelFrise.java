@@ -22,21 +22,29 @@ public class PanelFrise extends JPanel implements Serializable, ActionListener{
 
 		Date unedate = Date.saisirUneDateDebut();
 		Date deuxdates = Date.saisirUneDateFin();
-		int periode = Clavier.lireInt();
+		int periode = 5;
+		//int periode = Clavier.lireInt();
 		String titre = new String("Chouette");
 		Chronologie chrono = new Chronologie(unedate,deuxdates,periode,titre);
 		System.out.println(chrono.toString());
 		
 		PanelDiapo panelD = new PanelDiapo(chrono);
 		PanelTable panelT = new PanelTable(chrono);
+		
+		PanelFormulaire panelFormulaire = new PanelFormulaire();
+		PanelAjout panelAjout = new PanelAjout();
 
 		
 		//On associe le panel Diapo et Table pour qu'il
-		//soit au même endroit, dans la même "page"
+		//soit au mÃªme endroit, dans la mÃªme "page"
 		JPanel panelcentre = new JPanel();
 		panelcentre.add(panelD,BorderLayout.NORTH);
 		panelcentre.add(panelT,BorderLayout.SOUTH);
+		
+		this.add(panelFormulaire, Data.Titre_Menu[0]);
 		this.add(panelcentre,Data.Titre_Menu[1]);
+		this.add(panelAjout, Data.Titre_Menu[2]);
+		
 
 	}//PanelAgenda()
 
