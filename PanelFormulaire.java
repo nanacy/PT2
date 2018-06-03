@@ -27,6 +27,8 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	int chDateDebut;
 	int chDateFin;
 	int chPeriode;
+	
+	Chronologie chrono;
 
 	
 	//CHAMPS FORMULAIRE CREATION FRISE ----------------------------------------------------
@@ -37,7 +39,7 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	JLabel titrefrise = new JLabel("Titre de la frise chronologique");
 	JTextField txtfrise = new JTextField(10);
 		//ligne 2
-	JLabel datedebut = new JLabel("Date de début");
+	JLabel datedebut = new JLabel("Date de dÃ©but");
 	JTextField txtdatedebut = new JTextField(10);
 		//ligne 3
 	JLabel datefin = new JLabel("Date de fin");
@@ -47,8 +49,6 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	JTextField txtintervalle = new JTextField(10);
 		//ligne 5
 	JButton buttonAjout = new JButton("+");
-	
-	JTextField test = new JTextField(10);
 
 	
 	// CONSTRUCTEUR --------------------------------------------------------------------------
@@ -102,20 +102,12 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 		add(txtintervalle, contrainte);
 		//--------------- LIGNE 5 ---------------
 		contrainte.gridy=5;
-		// **** COLONNE 0 ****
-		contrainte.gridx=0;
-		contrainte.gridwidth=2;
+		// **** COLONNE 1 ****
+		contrainte.gridx=1;
 		add(buttonAjout, contrainte);
 		buttonAjout.addActionListener(this);
 		
-		
-		// TESTTTTTT
-		// TESTTTTTT
-		contrainte.gridx=0;
-		contrainte.gridy=7;
-		add(test, contrainte);
-		
-		//Remise à la normale
+		//Remise Ã  la normale
 		contrainte.gridwidth=1;
 		contrainte.gridheight=1;
 	}//PanelFormulaire
@@ -130,8 +122,17 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 			chDateDebut=Integer.parseInt(txtdatedebut.getText());
 			chDateFin=Integer.parseInt(txtdatefin.getText());
 			chPeriode=Integer.parseInt(txtintervalle.getText());
-			test.setText(chTitreFrise +chDateDebut +chDateFin +chPeriode);
-		}
+			
+			Date debut = new Date(chDateDebut);
+			Date fin = new Date(chDateFin);
+
+			try {
+				chrono = new Chronologie(debut, fin, chPeriode, chTitreFrise);
+			} catch (ExceptChrono e) {
+				e.printStackTrace();
+			}
+			System.out.println("AJOUT FRISE : " +chrono.toString());
+		}//if
 	}
 
 
