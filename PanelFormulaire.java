@@ -132,6 +132,7 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 				e.printStackTrace();
 			}
 			System.out.println("AJOUT FRISE : " +chrono.toString());
+
 		}//if
 	}
 
