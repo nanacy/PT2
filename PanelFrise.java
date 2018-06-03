@@ -23,6 +23,7 @@ public class PanelFrise extends JPanel implements Serializable, ActionListener{
 		Date unedate = Date.saisirUneDateDebut();
 		Date deuxdates = Date.saisirUneDateFin();
 		int periode = 5;
+		//int periode = Clavier.lireInt();
 		String titre = new String("Chouette");
 		Chronologie chrono = new Chronologie(unedate,deuxdates,periode,titre);
 		System.out.println(chrono.toString());
